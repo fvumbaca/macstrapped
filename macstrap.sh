@@ -35,4 +35,5 @@ fi
 install_or_update_package ansible
 
 echo 'Rock & Roll, lets do this.'
-ansible-playbook macstrap.yml
+ansible-galaxy install --force azohra.macstrap
+ansible-playbook -i "localhost," -c local playbook.yml 
