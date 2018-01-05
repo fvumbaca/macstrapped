@@ -1,0 +1,36 @@
+### OSX
+*.DS_Store
+*.LSOverride
+Thumbs.db
+.bundle
+
+### VisualStudioCode
+.vscode/*
+
+
+### Terraform
+*.terraform
+.terraform
+
+### Ansible
+*.retry
+
+### Erlang
+.eunit
+deps
+*.o
+*.beam
+*.plt
+erl_crash.dump
+ebin/*.beam
+rel/example_project
+.concrete/DEV_MODE
+.rebar
+
+### Elixir
+/_build
+/cover
+/deps
+/doc
+/.fetch
+*.ez

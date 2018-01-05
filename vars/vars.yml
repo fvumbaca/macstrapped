@@ -1,0 +1,144 @@
+---
+# state: present is the default assumtion for all entries. Add it if you want otherwise.
+dotfile_dir: "{{playbook_dir}}/config"
+license_dir: "{{playbook_dir}}/license"
+
+app_store_email: "jcommu@gmail.com"
+
+osx_settings_file: "{{dotfile_dir}}/.osx"
+terminal_theme_file: "{{dotfile_dir}}/Solarized-Dark.terminal"
+
+dock_apps:
+  - { name: Google Chrome,      pos: 1, path: "/Applications/Google Chrome.app"}
+  - { name: Slack,              pos: 2, path: "/Applications/Slack.app"}
+  - { name: Spotify,            pos: 3, path: "/Applications/Spotify.app"}
+  - { name: Terminal,           pos: 4, path: "/Applications/Utilities/Terminal.app"}
+  - { name: Visual Studio Code, pos: 5, path: "/Applications/Visual Studio Code.app"}
+  - { name: Tower,              pos: 6, path: "/Applications/Tower.app"}
+  - { name: Airmail 3,          pos: 7, path: "/Applications/Airmail 3.app"}
+  - { name: Fantastical 2,      pos: 8, path: "/Applications/Fantastical 2.app"}
+
+dock_folders:
+  - { source: "~/Downloads", view: fan, display: stack, sort: dateadded }
+  - { source: "~/Documents", view: fan, display: stack, sort: dateadded }
+
+packages:
+  #Brew-Tap
+  - { name: homebrew/core,  source: brew-tap }
+  - { name: caskroom/cask,  source: brew-tap }
+  - { name: caskroom/fonts, source: brew-tap }
+
+  #Brew-Core
+  - { name: htop,            source: brew }
+  - { name: dockutil,        source: brew }
+  - { name: zsh-completions, source: brew }
+  - { name: terraform,       source: brew }
+
+  - name: ruby
+    source: brew
+    packages:
+      - { name: "bundler" }
+
+  - name: node
+    source: brew
+    packages:
+      - { name: "testcafe" }
+
+  - name: python
+    source: brew
+    packages:
+      - { name: "slack-cleaner" }
+
+  - name: ansible
+    source: brew
+    dotfiles:
+      - { src: "{{dotfile_dir}}/.ansible.cfg", dest: "~/.ansible.cfg" }
+
+  - name: git
+    source: brew
+    dotfiles:
+      - { src: "{{dotfile_dir}}/.gitignore", dest: "~/.gitignore" }
+      - { src: "{{dotfile_dir}}/.gitconfig", dest: "~/.gitconfig" }
+
+  - name: bash
+    source: brew
+    dotfiles:
+      - { src: "{{dotfile_dir}}/.bash_profile", dest: "~/.bash_profile" }
+      - { src: "{{dotfile_dir}}/.inputrc", dest: "~/.inputrc" }
+
+  - name: zsh
+    source: brew
+    dotfiles:
+      - { src: "{{dotfile_dir}}/.zshrc", dest: "~/.zshrc" }
+
+  - name: vim
+    source: brew
+    dotfiles:
+      - { src: "{{dotfile_dir}}/.vimrc", dest: "~/.vimrc" }
+
+  #Brew-Cask
+  - { name: google-chrome,           source: brew-cask }
+  - { name: firefox,                 source: brew-cask }
+  - { name: slack,                   source: brew-cask }
+  - { name: docker,                  source: brew-cask }
+  - { name: calibre,                 source: brew-cask }
+  - { name: cleanmymac,              source: brew-cask }
+  - { name: divvy,                   source: brew-cask }
+  - { name: private-internet-access, source: brew-cask }
+  - { name: tower,                   source: brew-cask }
+  - { name: fantastical,             source: brew-cask }
+
+  - name: visual-studio-code
+    source: brew-cask
+    extensions:
+      - { name: zhuangtongfa.material-theme }
+      - { name: PKief.material-icon-theme }
+      - { name: PeterJausovec.vscode-docker }
+      - { name: formulahendry.code-runner }
+    dotfiles: 
+      - { src: "{{dotfile_dir}}/settings.json", dest: "~/Library/Application\ Support/Code/User/settings.json" }
+
+  - name: spotify
+    source: brew-cask
+    #licenses: 
+    #  - { src: "{{playbook_dir}}/licenses/watch-sources.bnk", dest: "~/Library/Application Support/Spotify/Users/fgimian-user/watch-sources.bnk" }
+
+  - name: 1password
+    source: brew-cask
+    #licenses: 
+    #  - { src: "{{playbook_dir}}/licenses/License.onepassword-license", dest: "~/Library/Group Containers/2BUA8C4S2C.com.agilebits/License/License.onepassword-license"}
+    plists:
+      - { domain: com.agilebits.onepassword6, key: WelcomeWindowShown,                    type: bool, value: true }
+      - { domain: com.agilebits.onepassword6, key: LockOnMainAppExit,                     type: bool, value: false }
+      - { domain: com.agilebits.onepassword6, key: LockOnIdle,                            type: bool, value: true }
+      - { domain: com.agilebits.onepassword6, key: ShowRichIcons,                         type: bool, value: true }
+      - { domain: com.agilebits.onepassword6, key: KeepHelperRunning,                     type: bool, value: true }
+      - { domain: com.agilebits.onepassword6, key: UserMetricsSkippedNewsletterSignupKey, type: bool, value: true }
+      - { domain: com.agilebits.onepassword6, key: CompletedEssentialSettings,            type: bool, value: true }
+      - { domain: 2BUA8C4S2C.com.agilebits.onepassword6-helper, key: autosave,            type: bool, value: false }
+
+  - name: microsoft-office
+    source: brew-cask 
+    plists:
+      - { domain: com.microsoft.Word, key: kSubUIAppCompletedFirstRunSetup1507,        type: bool, value: true }
+      - { domain: com.microsoft.Excel, key: kSubUIAppCompletedFirstRunSetup1507,       type: bool, value: true }
+      - { domain: com.microsoft.Powerpoint, key: kSubUIAppCompletedFirstRunSetup1507,  type: bool, value: true }
+      - { domain: com.microsoft.Outlook, key: kSubUIAppCompletedFirstRunSetup1507,     type: bool, value: true }
+      - { domain: com.microsoft.onenote.mac, key: kSubUIAppCompletedFirstRunSetup1507, type: bool, value: true }
+      - { domain: ~/Library/Group Containers/UBF8T346G9.Office/com.microsoft.officeprefs.plist, key: kCUIThemePreferencesThemeKeyPath, type: int, value: 0 }
+
+  # Brew-Cask Fonts
+  - { name: font-hack-nerd-font,               source: brew-cask }
+  - { name: font-sharetechmono-nerd-font-mono, source: brew-cask }
+
+  #Mac App Store
+  - { name: Airmail 3,                  id: 918858936, source: app-store } 
+  - { name: Blackmagic Disk Speed Test, id: 425264550, source: app-store }
+
+  - name: DaisyDisk
+    source: app-store
+    id: 918858936
+    #licenses: 
+    #  - { src: "{{playbook_dir}}/licenses/License.DaisyDisk", dest: "~/Library/Application Support/DaisyDisk/License.DaisyDisk" }
+
+ 
