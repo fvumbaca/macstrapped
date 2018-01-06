@@ -14,7 +14,6 @@ dock_apps:
   - { name: Spotify,            pos: 3, path: "/Applications/Spotify.app"}
   - { name: Terminal,           pos: 4, path: "/Applications/Utilities/Terminal.app"}
   - { name: Visual Studio Code, pos: 5, path: "/Applications/Visual Studio Code.app"}
-  - { name: Tower,              pos: 6, path: "/Applications/Tower.app"}
   - { name: Airmail 3,          pos: 7, path: "/Applications/Airmail 3.app"}
   - { name: Fantastical 2,      pos: 8, path: "/Applications/Fantastical 2.app"}
 
@@ -85,7 +84,6 @@ packages:
   - { name: cleanmymac,              source: brew-cask }
   - { name: divvy,                   source: brew-cask }
   - { name: private-internet-access, source: brew-cask }
-  - { name: tower,                   source: brew-cask }
   - { name: fantastical,             source: brew-cask }
 
   - name: visual-studio-code
@@ -95,6 +93,12 @@ packages:
       - { name: PKief.material-icon-theme }
       - { name: PeterJausovec.vscode-docker }
       - { name: formulahendry.code-runner }
+      - { name: alefragnani.project-manager }
+      - { name: eamodio.gitlens }
+      - { name: humao.rest-client }
+      - { name: rebornix.ruby }
+      - { name: CoenraadS.bracket-pair-colorizer }
+      - { name: cstuder.gitlab-ci-validator }
     dotfiles: 
       - { src: "{{dotfile_dir}}/settings.json", dest: "~/Library/Application\ Support/Code/User/settings.json" }
 
@@ -120,16 +124,17 @@ packages:
   - name: microsoft-office
     source: brew-cask 
     plists:
-      - { domain: com.microsoft.Word, key: kSubUIAppCompletedFirstRunSetup1507,        type: bool, value: true }
-      - { domain: com.microsoft.Excel, key: kSubUIAppCompletedFirstRunSetup1507,       type: bool, value: true }
-      - { domain: com.microsoft.Powerpoint, key: kSubUIAppCompletedFirstRunSetup1507,  type: bool, value: true }
-      - { domain: com.microsoft.Outlook, key: kSubUIAppCompletedFirstRunSetup1507,     type: bool, value: true }
+      - { domain: com.microsoft.Word,        key: kSubUIAppCompletedFirstRunSetup1507, type: bool, value: true }
+      - { domain: com.microsoft.Excel,       key: kSubUIAppCompletedFirstRunSetup1507, type: bool, value: true }
+      - { domain: com.microsoft.Powerpoint,  key: kSubUIAppCompletedFirstRunSetup1507, type: bool, value: true }
+      - { domain: com.microsoft.Outlook,     key: kSubUIAppCompletedFirstRunSetup1507, type: bool, value: true }
       - { domain: com.microsoft.onenote.mac, key: kSubUIAppCompletedFirstRunSetup1507, type: bool, value: true }
       - { domain: ~/Library/Group Containers/UBF8T346G9.Office/com.microsoft.officeprefs.plist, key: kCUIThemePreferencesThemeKeyPath, type: int, value: 0 }
 
   # Brew-Cask Fonts
   - { name: font-hack-nerd-font,               source: brew-cask }
   - { name: font-sharetechmono-nerd-font-mono, source: brew-cask }
+  - { name: font-fauna-one,                    source: brew-cask }
 
   #Mac App Store
   - { name: Airmail 3,                  id: 918858936, source: app-store } 
