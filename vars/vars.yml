@@ -32,6 +32,7 @@ packages:
   - { name: dockutil,        source: brew }
   - { name: zsh-completions, source: brew }
   - { name: terraform,       source: brew }
+  - { name: wget,            source: brew }
 
   - name: ruby
     source: brew
@@ -47,6 +48,7 @@ packages:
     source: brew
     packages:
       - { name: "slack-cleaner" }
+      - { name: "boto3" }
 
   - name: ansible
     source: brew
@@ -99,6 +101,7 @@ packages:
       - { name: rebornix.ruby }
       - { name: CoenraadS.bracket-pair-colorizer }
       - { name: cstuder.gitlab-ci-validator }
+      - { name: mauve.terraform }
     dotfiles: 
       - { src: "{{dotfile_dir}}/settings.json", dest: "~/Library/Application\ Support/Code/User/settings.json" }
 
