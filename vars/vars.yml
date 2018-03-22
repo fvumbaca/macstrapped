@@ -14,26 +14,30 @@ dock_apps:
   - { name: Spotify,            pos: 3, path: "/Applications/Spotify.app"}
   - { name: Terminal,           pos: 4, path: "/Applications/Utilities/Terminal.app"}
   - { name: Visual Studio Code, pos: 5, path: "/Applications/Visual Studio Code.app"}
-  - { name: Airmail 3,          pos: 7, path: "/Applications/Airmail 3.app"}
-  - { name: Fantastical 2,      pos: 8, path: "/Applications/Fantastical 2.app"}
+  - { name: Microsoft Outlook,  pos: 6, path: "/Applications/Microsoft Outlook.app"}
+  - { name: Steam,              pos: 7, path: "/Applications/Steam.app"}
+  - { name: OpenEmu,            pos: 8, path: "/Applications/OpenEmu.app"}
 
 dock_folders:
-  - { source: "~/Downloads", view: fan, display: stack, sort: dateadded }
-  - { source: "~/Documents", view: fan, display: stack, sort: dateadded }
+  - { source: "~/Downloads",   view: fan, display: stack, sort: dateadded }
+  - { source: "~/Documents",   view: fan, display: stack, sort: dateadded }
+  - { source: "~/Development", view: fan, display: stack, sort: dateadded }
 
 packages:
   #Brew-Tap
   - { name: homebrew/core,  source: brew-tap }
   - { name: caskroom/cask,  source: brew-tap }
   - { name: caskroom/fonts, source: brew-tap }
+  - { name: caskroom/drivers, source: brew-tap }
 
   #Brew-Core
-  - { name: htop,            source: brew }
-  - { name: dockutil,        source: brew }
-  - { name: zsh-completions, source: brew }
-  - { name: terraform,       source: brew }
-  - { name: wget,            source: brew }
-
+  - { name: htop,                   source: brew }
+  - { name: dockutil,               source: brew }
+  - { name: terraform,              source: brew }
+  - { name: wget,                   source: brew }
+  - { name: bash-completion,       source: brew }
+  - { name: zsh-completions,        source: brew }
+  
   - name: ruby
     source: brew
     packages:
@@ -43,17 +47,14 @@ packages:
     source: brew
     packages:
       - { name: "testcafe" }
+      - { name: "typescript" }
 
   - name: python
     source: brew
     packages:
       - { name: "slack-cleaner" }
       - { name: "boto3" }
-
-  - name: ansible
-    source: brew
-    dotfiles:
-      - { src: "{{dotfile_dir}}/.ansible.cfg", dest: "~/.ansible.cfg" }
+      - { name: "ansible" }
 
   - name: git
     source: brew
@@ -64,29 +65,32 @@ packages:
   - name: bash
     source: brew
     dotfiles:
-      - { src: "{{dotfile_dir}}/.bash_profile", dest: "~/.bash_profile" }
-      - { src: "{{dotfile_dir}}/.inputrc", dest: "~/.inputrc" }
+      - { src: "{{dotfile_dir}}/.bashrc", dest: "~/.bashrc" }
 
   - name: zsh
     source: brew
     dotfiles:
       - { src: "{{dotfile_dir}}/.zshrc", dest: "~/.zshrc" }
 
-  - name: vim
-    source: brew
-    dotfiles:
-      - { src: "{{dotfile_dir}}/.vimrc", dest: "~/.vimrc" }
-
   #Brew-Cask
-  - { name: google-chrome,           source: brew-cask }
-  - { name: firefox,                 source: brew-cask }
-  - { name: slack,                   source: brew-cask }
-  - { name: docker,                  source: brew-cask }
-  - { name: calibre,                 source: brew-cask }
-  - { name: cleanmymac,              source: brew-cask }
-  - { name: divvy,                   source: brew-cask }
-  - { name: private-internet-access, source: brew-cask }
-  - { name: fantastical,             source: brew-cask }
+  - { name: google-chrome,            source: brew-cask }
+  - { name: firefox,                  source: brew-cask }
+  - { name: slack,                    source: brew-cask }
+  - { name: docker,                   source: brew-cask }
+  - { name: calibre,                  source: brew-cask }
+  - { name: cleanmymac,               source: brew-cask }
+  - { name: divvy,                    source: brew-cask }
+  - { name: private-internet-access,  source: brew-cask }
+  - { name: steam,                    source: brew-cask }
+  - { name: google-cloud-sdk,         source: brew-cask }
+  - { name: logitech-gaming-software, source: brew-cask }
+
+  - name: iterm2
+    source: brew-cask
+    dotfiles: 
+      - { src: "{{dotfile_dir}}/.inputrc", dest: "~/.inputrc" }
+      - { src: "{{dotfile_dir}}/.hushlogin", dest: "~/.hushlogin" }
+
 
   - name: visual-studio-code
     source: brew-cask
@@ -140,7 +144,6 @@ packages:
   - { name: font-fauna-one,                    source: brew-cask }
 
   #Mac App Store
-  - { name: Airmail 3,                  id: 918858936, source: app-store } 
   - { name: Blackmagic Disk Speed Test, id: 425264550, source: app-store }
 
   - name: DaisyDisk
