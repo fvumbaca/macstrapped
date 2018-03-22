@@ -1,4 +1,16 @@
 source "$(brew --prefix)/etc/bash_completion"
+while true; do
+    read -p "Work or Personal?" yn
+    case $yn in
+        [Ww]* ) export VAULT=work; break;;
+        [Pp]* ) export VAULT=personal; break;;
+        * ) echo "Please answer W or P";;
+    esac
+done
+
+ansible-vault decrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault
+source ~/.${VAULT}.vault
+ansible-vault encrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return

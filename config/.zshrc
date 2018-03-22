@@ -1,3 +1,16 @@
+while true; do
+    read -p "Work or Personal?" yn
+    case $yn in
+        [Ww]* ) export VAULT=work; break;;
+        [Pp]* ) export VAULT=personal; break;;
+        * ) echo "Please answer W or P";;
+    esac
+done
+
+ansible-vault decrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault
+source ~/.${VAULT}.vault
+ansible-vault encrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault
+
 # https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config
 # =============================================================================
 #                                   Functions
