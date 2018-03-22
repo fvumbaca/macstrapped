@@ -13,5 +13,9 @@ if [ $? -ne 0 ] ; then
 fi
 
 echo 'Rock & Roll, lets do this.'
+ansible-vault decrypt --vault-password-file ~/.vault.key config/vault
+chmod u+x config/vault
+source ./config/vault
+ansible-vault encrypt --vault-password-file ~/.vault.key config/vault
 ansible-galaxy install --force azohra.macstrap
 ansible-playbook -i "localhost," -c local playbook.yml 
