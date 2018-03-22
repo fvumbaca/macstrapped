@@ -8,9 +8,9 @@ while true; do
     esac
 done
 
-ansible-vault decrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault
-source ~/.${VAULT}.vault
-ansible-vault encrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault
+ansible-vault decrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault >&/dev/null
+source ~/.${VAULT}.vault >&/dev/null
+ansible-vault encrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault >&/dev/null
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -52,7 +52,7 @@ fi
 
 # Get repo info
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;91m\]\u\[\033[01;37m\] at \[\033[01;33m\]\h\[\033[01;37m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \[\033[01;32m\][%s]")\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;91m\]\u\[\033[01;37m\] ($VAULT) at \[\033[01;33m\]\h\[\033[01;37m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \[\033[01;32m\][%s]")\[\033[00m\]\$ '
     PS2="> "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '

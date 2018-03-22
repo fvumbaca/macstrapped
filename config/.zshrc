@@ -1,3 +1,4 @@
+
 while true; do
     read -p "Work or Personal?" yn
     case $yn in
@@ -7,9 +8,9 @@ while true; do
     esac
 done
 
-ansible-vault decrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault
-source ~/.${VAULT}.vault
-ansible-vault encrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault
+ansible-vault decrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault >&/dev/null
+source ~/.${VAULT}.vault >&/dev/null
+ansible-vault encrypt --vault-password-file ~/.vault.key ~/.${VAULT}.vault >&/dev/null
 
 # https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config
 # =============================================================================
