@@ -106,6 +106,8 @@ packages:
       - { name: CoenraadS.bracket-pair-colorizer }
       - { name: cstuder.gitlab-ci-validator }
       - { name: mauve.terraform }
+    scaffold_dirs:
+      - "~/Library/Application\ Support/Code/User"
     dotfiles: 
       - { src: "{{dotfile_dir}}/settings.json", dest: "~/Library/Application\ Support/Code/User/settings.json" }
 
